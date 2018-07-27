@@ -22,7 +22,8 @@ export class MiddlePanelComponent {
     var xhttp= new XMLHttpRequest();
     xhttp.onreadystatechange=function(){
       if(this.readyState==4 && this.status==200){
-        that.graphData=JSON.parse(this.responseText)[0]
+        that.graphData=JSON.parse(this.responseText);
+        console.log(that.graphData)
         that.graphGenerator();
       }
     }
@@ -61,7 +62,13 @@ export class MiddlePanelComponent {
           .selectAll("circle")
           .data(graph.nodes)
           .enter().append("circle")
-            .attr("r", 5)
+            .attr("r", (d)=>{
+              if(d.soi){
+                return 16
+              }else{
+                return 4
+              }
+            })
             .attr("fill", function(d) { return color(d.group); })
             .call(d3.drag()
                 .on("start", dragstarted)
