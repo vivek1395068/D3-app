@@ -1,41 +1,30 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import * as d3 from "d3";
+import {shareGraphData} from './services/shareGraphData.service'
 
 @Component({
   selector: 'middlePanel',
-  template:`<div class="middlePanel">
-              <svg  width="100%" height="600"></svg>
+  template:`<div id="middlePanel" class="middlePanel">
             </div>`,
   //templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class MiddlePanelComponent {
-  constructor(){
-    //alert("HK");
-    this.fetchGraphData();
+export class MiddlePanelComponent implements OnInit {
+  constructor(private dataService:shareGraphData){
+    dataService.fetchGraphData({id:null},this.graphGenerator.bind(this));
   }
   //alert("HK");
-  //title = 'app';
-
-  fetchGraphData(){
-    var that=this
-    var xhttp= new XMLHttpRequest();
-    xhttp.onreadystatechange=function(){
-      if(this.readyState==4 && this.status==200){
-        that.graphData=JSON.parse(this.responseText);
-        console.log(that.graphData)
-        that.graphGenerator();
-      }
-    }
-    xhttp.open("GET","/getgraphData",true);
-    xhttp.send();
+  ngOnInit(){
+    this.dataService.updateFunction(this.graphGenerator.bind(this));
   }
-
-  graphData= null;
-      
   graphGenerator(){
-      var graph=this.graphData
-      var svg = d3.select("svg"),
+      var graph=this.dataService.graphData;
+      d3.select("svg").remove();
+      //var svg = d3.select("svg"),
+      var svg = d3.select("#middlePanel")
+                        .append("svg")
+                        .attr("width", "100%")
+                        .attr("height", "600px"),
       //width = +svg.attr("width"),
       //height = +svg.attr("height");
       width=400,
