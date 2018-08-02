@@ -5,10 +5,9 @@ import {shareGraphData} from './services/shareGraphData.service'
 @Component({
   selector: 'leftPanel',
   template:`<div class="leftPanel">
-              <p>HK{{variable}}</p>
+              <p>HK : {{variable}}</p>
               <input type="text" [(ngModel)]="variable">
               <input type="submit" value="submit" (click)="func('HK')">
-              <input [(ngModel)]="variable">
             </div>`,
   //templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

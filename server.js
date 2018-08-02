@@ -28,7 +28,8 @@ app.post("/getgraphData", /* express.bodyParser(), */(req,res)=>{
         var dbo = db.db("graphdata");
         var graphdata={
             nodes:null,
-            links:null
+            links:null,
+            soi:null
         };
         dbo.collection("nodes").updateOne(soi,unsetSoi,(req,res1)=>{
             if(err) throw err;
@@ -40,6 +41,11 @@ app.post("/getgraphData", /* express.bodyParser(), */(req,res)=>{
             //Find all documents in the nodes collection:
             dbo.collection("nodes").find({}).toArray(function(err, result) {
                 if (err) throw err;
+                dbo.collection("nodes").find(soi).toArray(function(err, result) {
+                    if (err) throw err;
+                    graphdata.soi=result
+                    console.log(result);
+                });
                 graphdata.nodes=result 
             });
             //Find all documents in the links collection:
