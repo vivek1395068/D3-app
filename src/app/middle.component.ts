@@ -4,7 +4,7 @@ import {shareGraphData} from './services/shareGraphData.service'
 
 @Component({
   selector: 'middlePanel',
-  template:`<div id="middlePanel" class="middlePanel">
+  template:`<div id="middlePanel" class="middlePanel"><div id="drag1"></div>
             </div>`,
   //templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

@@ -3,7 +3,7 @@ import {shareGraphData} from './services/shareGraphData.service'
 
 @Component({
   selector: 'rightPanel',
-  template:`<div class="rightPanel">
+  template:`<div id="rightPanel" class="rightPanel"><div id="drag2"></div>
               <button (click)="getData()">getData</button>
               <p id="p"></p>
               {{dataService.soi}}

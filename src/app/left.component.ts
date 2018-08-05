@@ -4,7 +4,7 @@ import {shareGraphData} from './services/shareGraphData.service'
 
 @Component({
   selector: 'leftPanel',
-  template:`<div class="leftPanel">
+  template:`<div id="leftPanel" class="leftPanel">
               <p>HK : {{variable}}</p>
               <input type="text" [(ngModel)]="variable">
               <input type="submit" value="submit" (click)="func('HK')">

@@ -19,14 +19,23 @@
 .leftPanel{
     width: 33.33%;
     height: 702px;
-    float: left;
+    position: absolute;
+    left: 0px;
     background-color: rgba(211, 198, 198, 0.342);
 }
 
 .middlePanel{
-    width: 33.33%;
+    position: absolute;
+    left: 33.33%;
+    right: 33.33%;
     height: 702px;
-    float: left;
+}
+
+#drag1,#drag2{
+    position: absolute;
+    width: 8px;
+    height: 100%;
+    cursor: w-resize;
 }
 
 /* .links line {
@@ -40,8 +49,9 @@
 } */
 
 .rightPanel{
+    position: absolute;
+    right: 0px;
     width: 33.33%;
     height: 702px;
-    float: left;
     background-color: rgba(211, 198, 198, 0.342);
 }
